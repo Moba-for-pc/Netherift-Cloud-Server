@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netherift_Cloud_Server", "Netherift_Cloud_Server.csproj", "{1BF7E89A-85E9-4FE7-A331-877260F7B583}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netherift_Cloud_Server.Tests", "..\Netherift_Cloud_Server.Tests\Netherift_Cloud_Server.Tests.csproj", "{060B4BA0-3889-4DA2-888B-71B434F16043}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BF7E89A-85E9-4FE7-A331-877260F7B583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BF7E89A-85E9-4FE7-A331-877260F7B583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BF7E89A-85E9-4FE7-A331-877260F7B583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BF7E89A-85E9-4FE7-A331-877260F7B583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{060B4BA0-3889-4DA2-888B-71B434F16043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{060B4BA0-3889-4DA2-888B-71B434F16043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{060B4BA0-3889-4DA2-888B-71B434F16043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{060B4BA0-3889-4DA2-888B-71B434F16043}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1964D4AE-CFE7-4B1C-AAF0-B654EF06F8CC}
+	EndGlobalSection
+EndGlobal
