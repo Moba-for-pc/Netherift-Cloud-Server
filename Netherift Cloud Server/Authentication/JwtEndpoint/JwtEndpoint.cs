@@ -2,37 +2,60 @@
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Unity.Services.CloudCode.Core;
 
 namespace Netherift_Cloud_Server.Authentication.JwtEndpoint
 {
     public class JwtEndpoint : IJwtEndpoint
     {
+        private const string API_URL = "https://services.api.unity.com";
+        private const string TOKEN_EXCHANGE_URN = "auth/v1/token-exchange";
+        private const string PROJECT_ID_QUERY_NAME = "projectId";
+        private const string ENVIRONMENT_ID_QUERY_NAME = "environmentId";
+
         private IExecutionContext _context;
-        public JwtEndpoint(IExecutionContext context) {
+        public JwtEndpoint(IExecutionContext context)
+        {
             _context = context;
         }
 
         public async Task<string> MakeRequestAsync()
         {
+            var client = await ConfigureRestClientAsync();
+            var request = ConfigureRequestToTokenExchange();
+            var response = await client.ExecuteAsync(request);
+            var token = DeserializeToken(response);
+            return token;
+        }
+
+        private async Task<RestClient> ConfigureRestClientAsync()
+        {
+            var options = await ConfigureClientOptions();
+            var client = new RestClient(options);
+            return client;
+        }
+
+        private Task<RestClientOptions> ConfigureClientOptions()
+        {
             var clientOptions = new RestClientOptions()
             {
-                BaseUrl = new Uri("https://services.api.unity.com"),
+                BaseUrl = new Uri(API_URL),
                 Authenticator = new HttpBasicAuthenticator(ServiceAccountCredentials.KEY_ID, ServiceAccountCredentials.SECRET),
             };
-            var client = new RestClient(clientOptions);
+            return Task.FromResult(clientOptions);
+        }
 
-            var request = new RestRequest("auth/v1/token-exchange")
-               .AddQueryParameter("projectId", _context.ProjectId, false)
-               .AddQueryParameter("environmentId", _context.EnvironmentId, false);
+        private RestRequest ConfigureRequestToTokenExchange()
+        {
+            var request = new RestRequest(TOKEN_EXCHANGE_URN)
+              .AddQueryParameter(PROJECT_ID_QUERY_NAME, _context.ProjectId, false)
+              .AddQueryParameter(ENVIRONMENT_ID_QUERY_NAME, _context.EnvironmentId, false);
             request.Method = Method.Post;
+            return request;
+        }
 
-            var response = await client.ExecuteAsync(request);
+        private string DeserializeToken(RestResponse response)
+        {
             if (!response.IsSuccessful)
             {
                 throw new Exception(response.Content);

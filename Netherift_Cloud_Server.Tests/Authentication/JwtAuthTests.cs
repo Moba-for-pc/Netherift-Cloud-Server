@@ -2,7 +2,6 @@
 using Moq;
 using Netherift_Cloud_Server.Authentication;
 using Netherift_Cloud_Server.Authentication.JwtEndpoint;
-using Unity.Services.CloudCode.Core;
 using Xunit;
 
 namespace Netherift_Cloud_Server.Tests.Authentication
@@ -23,7 +22,7 @@ namespace Netherift_Cloud_Server.Tests.Authentication
         }
 
         [Fact]
-        public async void ShouldReturnTokenIFAllOk()
+        public async void ShouldReturnNotEmptyStringIFAllOk()
         {
             // Arrange
             var auth = GenerateDefaultAuth();
@@ -45,7 +44,7 @@ namespace Netherift_Cloud_Server.Tests.Authentication
 
             // Act
             string token = await auth.GetTokenAsync();
-         
+
             // Assert
             token.Should().BeEquivalentTo(await rightTokenTask);
         }

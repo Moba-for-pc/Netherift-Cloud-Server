@@ -1,6 +1,4 @@
-﻿using RestSharp;
-
-namespace Netherift_Cloud_Server.Authentication.JwtEndpoint
+﻿namespace Netherift_Cloud_Server.Authentication.JwtEndpoint
 {
     public interface IJwtEndpoint
     {
