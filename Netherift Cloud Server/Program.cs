@@ -9,6 +9,7 @@ namespace Netherift_Cloud_Server
     {
         public void Setup(ICloudCodeConfig config)
         {
+            config.Dependencies.AddScoped<IPlayerRepository, PlayerRepository>();
             config.Dependencies.AddSingleton<IJwtAuth, JwtAuth>();
         }
     }
