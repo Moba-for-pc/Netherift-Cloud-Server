@@ -58,7 +58,7 @@ namespace Netherift_Cloud_Server.Tests.Authentication
 
             // Act
             var firstToken = await auth.GetTokenAsync();
-            Thread.Sleep(3000);
+            Thread.Sleep(1000 * 3);
             var secondToken = await auth.GetTokenAsync();
 
             // Assert
@@ -73,7 +73,7 @@ namespace Netherift_Cloud_Server.Tests.Authentication
 
             // Act
             var firstToken = await auth.GetTokenAsync();
-            Thread.Sleep(1000 * 60);
+            Thread.Sleep(1000 * 35);
             var secondToken = await auth.GetTokenAsync();
 
             // Assert
